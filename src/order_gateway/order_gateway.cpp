@@ -1,13 +1,7 @@
+#include "order_gateway.hpp"
 #include <iostream>
 
-class OrderGateway {
-public:
-    OrderGateway() {
-        // Initialize order gateway state here
-    }
-
-    void connect() {
-        // Placeholder for connecting to exchange order entry points
-        std::cout << "OrderGateway connected (placeholder)." << std::endl;
-    }
-};
+void OrderGateway::sendOrder(const std::string &orderDetails) {
+    std::lock_guard<std::mutex> lock(mutex_);
+    std::cout << "OrderGateway: Sending order: " << orderDetails << std::endl;
+}
