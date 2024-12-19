@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+
+# If using submodule for GTest:
 add_subdirectory(gtest)
 include_directories(gtest/googletest/include)
 include_directories(gtest/googlemock/include)
@@ -10,3 +13,8 @@ target_link_libraries(test_order_gateway PRIVATE gtest gtest_main order_gateway_
 
 add_executable(test_strategies test_strategies.cpp)
 target_link_libraries(test_strategies PRIVATE gtest gtest_main strategies_lib)
+
+enable_testing()
+add_test(NAME FeedHandlerTests COMMAND test_feedhandler)
+add_test(NAME OrderGatewayTests COMMAND test_order_gateway)
+add_test(NAME StrategiesTests COMMAND test_strategies)
