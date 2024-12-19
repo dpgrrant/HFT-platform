@@ -10,8 +10,9 @@ TEST(FeedHandlerTest, ReceivesData) {
     IFeedHandler* fh = createFeedHandler();
     std::atomic<int> tickCount{0};
     fh->subscribe([&](const MarketTick &tick) {
-        tickCount++;
-    });
+    (void)tick; // Mark the parameter as intentionally unused
+    tickCount++;
+});
     fh->start();
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1500));
